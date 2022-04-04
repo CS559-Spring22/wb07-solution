@@ -7,8 +7,7 @@
  */
 
 import * as T from "../libs/CS559-Three/build/three.module.js";
-// it's better if we don't have camera controls
-// import { OrbitControls } from "../libs/CS559-Three/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "../libs/CS559-Three/examples/jsm/controls/OrbitControls.js";
 import {
     makeSelect,
     LabelSlider
@@ -87,8 +86,7 @@ export function etScene(divname) {
     camera.lookAt(0, 0, 0);
   
     // since we're animating, add OrbitControls
-    // these confuse things, and break the demos - so remove them
-    // let controls = new OrbitControls(camera, renderer.domElement);
+    let controls = new OrbitControls(camera, renderer.domElement);
   
     scene.add(new T.AmbientLight("white", 0.2));
     let pointLight = new T.PointLight("white", 1, 0, 0);
@@ -155,7 +153,7 @@ export function etScene(divname) {
     };
 
     /* If the selector changes, make sure to change the slider names */
-    let selector = makeSelect(["XYZ", "ZYX", "ZYZ", "ZXY", "ZXZ"], el);
+    let selector = makeSelect(["XYZ", "ZYX", "ZYZ", "ZXY"], el);
     selector.onchange = function() {
         x1.label.innerText = selector.value[0] + str;
         y1.label.innerText = selector.value[1] + str;
